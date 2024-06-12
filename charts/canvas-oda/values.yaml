@@ -213,7 +213,7 @@ secretsmanagement-operator:
   imagePullPolicy: Always
   
   sidecarImage: ocfork/secretsmanagement-sidecar
-  sidecarVersion: 0.1.0
+  sidecarVersion: 0.1.1
   #TODO[FH]: remove before PR is merged 
   sidecarPrereleaseSuffix: 
   
