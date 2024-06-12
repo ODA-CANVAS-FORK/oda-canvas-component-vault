@@ -1,4 +1,4 @@
-name: Check that PR does not contain prereleaseSuffixes
+name: Check that PRs do not contain prereleaseSuffixes
 on: 
   pull_request:
     branches:
