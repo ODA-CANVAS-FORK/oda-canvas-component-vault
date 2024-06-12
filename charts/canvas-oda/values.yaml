@@ -208,14 +208,14 @@ secretsmanagement-operator:
   image: ocfork/secretsmanagement-operator
   version: 0.1.0
   #TODO[FH]: remove before PR is merged 
-  prereleaseSuffix: xxx 
+  prereleaseSuffix: 
   #imagePullPolicy: IfNotPresent
   imagePullPolicy: Always
   
   sidecarImage: ocfork/secretsmanagement-sidecar
   sidecarVersion: 0.1.0
   #TODO[FH]: remove before PR is merged 
-  sidecarPrereleaseSuffix: yyy
+  sidecarPrereleaseSuffix: 
   
   # TODO: add TLS to canvas-vault-hc
   vault_addr: "http://canvas-vault-hc.canvas-vault.svc.cluster.local:8200"
