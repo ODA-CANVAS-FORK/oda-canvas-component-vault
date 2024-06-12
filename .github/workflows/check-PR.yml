@@ -28,5 +28,5 @@ jobs:
       - name: report error
         if: steps.values_yaml_contains_version_suffix.outputs.result=='true'
         run: |
-          echo "::error file=charts/canvas-oda/values.yaml::contains prereleaseSuffixes: [${{ steps.version_suffixes.outputs.result }}]" 
+          echo "::error file=charts/canvas-oda/values.yaml::contains prereleaseSuffixes: [${{ steps.version_suffixes.outputs.result }}]" && exit 1
 
