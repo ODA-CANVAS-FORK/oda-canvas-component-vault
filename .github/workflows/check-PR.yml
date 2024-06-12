@@ -29,7 +29,7 @@ jobs:
           cmd: yq '[.secretsmanagement-operator.prereleaseSuffix, .secretsmanagement-operator.sidecarPrereleaseSuffix] | filter(.!=null and .!="") | join(", ")' charts/canvas-oda/values.yaml
           
       - name: report error
-        if: steps.values_yaml_contains_version_suffix.outputs.result=="true"
+        if: steps.values_yaml_contains_version_suffix.outputs.result=='true'
         run: |
           echo "::error::values.yaml contains prereleaseSuffixes: [${{ steps.version_suffixes.outputs.result }}]" && exit 1
 
