@@ -21,4 +21,3 @@ jobs:
         run: |
           echo "::error::values.yaml contains at least one nonempty prereleaseSuffix" && exit 1
 
-
