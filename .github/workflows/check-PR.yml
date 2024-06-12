@@ -18,8 +18,15 @@ jobs:
         with:
           cmd: yq '[.secretsmanagement-operator.prereleaseSuffix, .secretsmanagement-operator.sidecarPrereleaseSuffix] | filter(.!=null and .!="")  | length | . != "0"' charts/canvas-oda/values.yaml
           
+      - name: collect existing version suffixes in values.yaml for error reportfor 
+        id: version_suffixes
+        if: steps.values_yaml_contains_version_suffix.outputs.result
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq '[.secretsmanagement-operator.prereleaseSuffix, .secretsmanagement-operator.sidecarPrereleaseSuffix] | filter(.!=null and .!="")' charts/canvas-oda/values.yaml
+          
       - name: report error
         if: steps.values_yaml_contains_version_suffix.outputs.result
         run: |
-          echo "::error::values.yaml contains at least one nonempty prereleaseSuffix" && exit 1
+          echo "::error::values.yaml contains prereleaseSuffixes: steps.version_suffixes.outputs.result" && exit 1
 
