@@ -28,5 +28,5 @@ jobs:
       - name: report error
         if: steps.values_yaml_contains_version_suffix.outputs.result
         run: |
-          echo "::error::values.yaml contains prereleaseSuffixes: steps.version_suffixes.outputs.result" && exit 1
+          echo "::error::values.yaml contains prereleaseSuffixes: '${{ steps.version_suffixes.outputs.result }}'" && exit 1
 
