@@ -1,0 +1,24 @@
+name: Check that PR does not contain prereleaseSuffixes
+on: 
+  pull_request:
+    branches:
+      - main
+jobs:
+  check-pr-does-not-contain-prereleasesuffixes-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: check if there are nonempty version suffixes in values.yaml
+        id: values_yaml_contains_version_suffix
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq '[.secretsmanagement-operator.prereleaseSuffix, .secretsmanagement-operator.sidecarPrereleaseSuffix] | filter(.!=null and .!="")  | length | . != "0"' charts/canvas-oda/values.yaml
+          
+      - name: report error
+        if: steps.values_yaml_contains_version_suffix.outputs.result
+        run: |
+          echo "::error::values.yaml contains at least one nonempty prereleaseSuffix" && exit 1
+
+
