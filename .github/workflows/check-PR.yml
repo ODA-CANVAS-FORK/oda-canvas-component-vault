@@ -23,7 +23,7 @@ jobs:
           
       - name: collect existing version suffixes in values.yaml for error reportfor 
         id: version_suffixes
-        if: steps.values_yaml_contains_version_suffix.outputs.result=="true"
+        if: steps.values_yaml_contains_version_suffix.outputs.result=='true'
         uses: mikefarah/yq@master
         with:
           cmd: yq '[.secretsmanagement-operator.prereleaseSuffix, .secretsmanagement-operator.sidecarPrereleaseSuffix] | filter(.!=null and .!="") | join(", ")' charts/canvas-oda/values.yaml
